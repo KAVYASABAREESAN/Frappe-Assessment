@@ -2,6 +2,7 @@
  "actions": [],
  "allow_bulk_edit": 1,
  "allow_rename": 1,
+ "autoname": "INV-.YYYY.-.#####",
  "creation": "2026-09-22 16:12:50.785757",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -13,7 +14,8 @@
   "rental_amount",
   "damage_amount",
   "total_amount",
-  "payment_status"
+  "payment_status",
+  "amended_from"
  ],
  "fields": [
   {
@@ -45,11 +47,13 @@
    "label": "Rental Amount"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "damage_amount",
    "fieldtype": "Currency",
    "label": "Damage Amount"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "total_amount",
    "fieldtype": "Currency",
    "label": "Total Amount",
@@ -61,15 +65,27 @@
    "in_list_view": 1,
    "label": "Payment Status",
    "options": "Unpaid\nPaid"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Rental Invoice",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2026-09-22 16:37:15.828328",
+ "modified": "2026-09-23 11:20:35.626392",
  "modified_by": "Administrator",
  "module": "RentFlow",
  "name": "Rental Invoice",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -82,6 +98,34 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "RF Front Desk",
+   "share": 1
+  },
+  {
+   "read": 1,
+   "role": "RF Inspector"
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "RF Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],

@@ -4,6 +4,29 @@ app_publisher = "Kavya"
 app_description = "Application to rent equipments"
 app_email = "kavya.sabareesan11@gmail.com"
 app_license = "mit"
+import frappe
+
+#Fixture for Role Doctype
+fixtures = [
+    {
+        "dt": "Role",
+        "filters": [
+            ["name", "in", ["RF Front Desk", "RF Inspector", "RF Manager"]]
+        ]
+    }
+]
+
+
+
+doc_events = {
+    "*": {
+        "on_update": "rentflow.audit.log_change",
+        "on_submit": "rentflow.audit.log_change",
+        "on_cancel": "rentflow.audit.log_change",
+    }
+}
+
+after_install = "rentflow.install.after_install"
 
 # Apps
 # ------------------
