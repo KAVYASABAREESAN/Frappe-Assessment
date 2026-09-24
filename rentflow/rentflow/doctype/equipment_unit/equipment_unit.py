@@ -17,3 +17,6 @@ class EquipmentUnit(Document):
     	prefix = f"{self.category}"
     	series = getseries(prefix, 4)
     	self.name = f"{prefix[:3]}-{series}"
+	def on_update(self):
+		threshold = frappe.db.get_value("RentFlow Settings", None, "low_availability_threshold")
+

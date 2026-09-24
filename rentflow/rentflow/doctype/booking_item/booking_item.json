@@ -56,13 +56,13 @@
    "fieldname": "checkout_condition_grade",
    "fieldtype": "Select",
    "label": "Checkout Condition Grade",
-   "options": "Equipment Unit"
+   "options": "New\nGood\nFair\nPoor\nDamaged"
   },
   {
    "fieldname": "checkin_condition_grade",
    "fieldtype": "Select",
    "label": "Checkin Condition Grade",
-   "options": "Equipment Unit"
+   "options": "New\nGood\nFair\nPoor\nDamaged"
   },
   {
    "allow_on_submit": 1,
@@ -76,7 +76,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-09-22 18:14:19.399657",
+ "modified": "2026-09-24 15:41:29.651494",
  "modified_by": "Administrator",
  "module": "RentFlow",
  "name": "Booking Item",
