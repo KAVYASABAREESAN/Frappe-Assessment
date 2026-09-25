@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import getdate
 
 
 class RentalBooking(Document):
@@ -15,12 +16,15 @@ class RentalBooking(Document):
         rental_total = 0
         damage_total = 0
 
-        if self.start_date > self.end_date:
+        start_date = getdate(self.start_date)
+        end_date = getdate(self.end_date)
+
+        if start_date > end_date:
             frappe.throw("Start date must be less than end date")
 
         for item in self.items:
 
-            item.line_days = (self.end_date - self.start_date).days + 1
+            item.line_days = (end_date - start_date).days + 1
             item.line_amount = item.daily_rate * item.line_days
 
             rental_total += item.line_amount
@@ -149,3 +153,6 @@ class RentalBooking(Document):
             frappe.throw(
                 "Only Draft or Cancelled bookings can be deleted."
             )
+
+def before_print(doc, method=None):
+	    doc.print_summary = (f"{doc.customer_name} - "f"{doc.start_date} to {doc.end_date}")

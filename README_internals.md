@@ -30,8 +30,24 @@ B3 — Dangerous Patterns
             unit.save()
 
 B4 — Concurrency, One Question
+
     why would two staff members confirming the same booking at once trigger a "Document has been modified after you have opened it" error, and how does Frappe prevent the silent overwrite?
 
     ANSWER:When 2 staff members confirm the same booking at once, we get an error,
     it is because the frappe tracks the timestamp of the users opening a document and updating it, so if the timestamp of the document getting updated is later than the document opened timestamp it shows the error, in order to notfiy the updation and alos to prevent overriding
      
+E1 — Complete Lifecycle
+
+    Similar to Dangerous pattern when self.save is called inside on_update() the self.save() recursively calls on_update() again and again
+    So,compute the derived fileds before the document is saved.
+
+H1 — Rental Booking Form Script
+
+    frappe.call() is asynchronous. The server response is received later through its callback.
+    the validate() should be called sychronously we should not wait for it to be called asynchronously
+    We must use onload()  or refresh() instead for validations as they
+
+J1 — Rental Agreement
+
+    Using frappe.get_all() directly inside a Jinja template puts db logic in print template.
+    A better approach is to pre-compute the data in before_print() and store it in doc.precomputed_field.

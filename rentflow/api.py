@@ -35,4 +35,4 @@ def reassign_bookings(from_staff, to_staff):
             # frappe.get_traceback(),
             "RentFlow: Failed to reassign bookings"
         )
-
+        raise

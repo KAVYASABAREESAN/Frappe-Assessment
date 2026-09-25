@@ -28,6 +28,9 @@ doc_events = {
 
 after_install = "rentflow.install.after_install"
 
+jinja = {
+    "methods": ["rentflow.utils.get_shop_name"]
+}
 # Apps
 # ------------------
 
